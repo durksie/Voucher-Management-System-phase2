@@ -137,3 +137,48 @@ voucher-generation/
 - Usage limits are enforced
 - Detailed error messages guide users to correct inputs
 - All errors are logged server-side for debugging
+
+
+# DATABASE SCHEMA SQL COMMAND
+-- Create the database
+CREATE DATABASE IF NOT EXISTS voucher_db;
+USE voucher_db;
+
+-- Create the vouchers table
+CREATE TABLE vouchers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  code VARCHAR(50) NOT NULL UNIQUE,
+  discount_amount DECIMAL(10,2) NOT NULL,
+  category VARCHAR(50) DEFAULT 'general',
+  max_uses INT DEFAULT 1,
+  used_count INT DEFAULT 0,
+  is_redeemed BOOLEAN DEFAULT FALSE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  redeemed_at DATETIME NULL
+);
+
+-- Optional: sample data for testing
+INSERT INTO vouchers (code, discount_amount, category, max_uses, used_count, is_redeemed, created_at)
+VALUES
+('VOUCHER-TEST1', 50.00, 'general', 1, 0, FALSE, NOW()),
+('VOUCHER-TEST2', 100.00, 'holiday', 2, 1, FALSE, NOW());
+# ########################
+
+# 1. To run this project 
+download mysql workbench (https://www.mysql.com/products/workbench/)
+
+then run the above sql commands and setup 
+# Hostname
+# Connection name
+# Password and store inside vault 
+
+# 2. Then inside this project go to the backend folder/config/database.js
+#Replace the values there with the correct details from mysqlworkbench that you just created
+
+# then open terminal and cd backend
+THEN TO RUN YOUR BACKEND RUN # node server.js
+
+### 3. On a different server cd frontend 
+THEN RUN YOUR FRONTEND # npm run
+
+# THEN YOUR PROJECT SHOULD SUCCESSFULLY RUN
