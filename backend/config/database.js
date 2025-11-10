@@ -3,8 +3,8 @@ const mysql = require("mysql2/promise")
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "#Nyiko1@",
-  database: process.env.DB_NAME || "voucher_db",
+  password: process.env.DB_PASSWORD || "write your workbench password here",
+  database: process.env.DB_NAME || "write the name of the database here",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
